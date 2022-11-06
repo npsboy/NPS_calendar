@@ -78,7 +78,21 @@ let total_no_of_working_days = (total_days-no_of_sundays_in_year) - no_of_holida
 let percentage_of_year_completed = Math.round((no_of_working_days_over/total_no_of_working_days)*100); 
 let no_of_hols_left = get_num_hols(today, last_day);
 let no_of_working_days_left = find_days_inbetween(today, last_day) - no_of_sundays_left - no_of_hols_left;
-//
+
+let val1 = document.getElementById("no_wor_left").innerHTML;
+document.getElementById("no_wor_left").innerHTML = val1 + no_of_working_days_left;
+
+let val2 = document.getElementById("no_wor_over").innerHTML;
+document.getElementById("no_wor_over").innerHTML = val2 + no_of_working_days_over;
+
+let val3 = document.getElementById("percy").innerHTML;
+document.getElementById("percy").innerHTML = val3 + percentage_of_year_completed + "%";
+
+
+document.getElementById("percy_bar").value = percentage_of_year_completed;
+
+
+
 //document.write("<br> no of sundays left = ", no_of_sundays_left);
 //document.write("<br> admiring the number of sundays? Well here are the number of working days. Enjoy this! Ha ha!")
 //document.write("<br> no of working days left = ", no_of_working_days_left);
