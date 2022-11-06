@@ -93,24 +93,3 @@ document.getElementById("percy_bar").value = percentage_of_year_completed;
 
 
 
-//document.write("<br> no of sundays left = ", no_of_sundays_left);
-//document.write("<br> admiring the number of sundays? Well here are the number of working days. Enjoy this! Ha ha!")
-//document.write("<br> no of working days left = ", no_of_working_days_left);
-//
-//document.write("<br> no of working days over = ", find_days_inbetween(first_day, today) - no_of_sundays_over - no_of_holidays_over);
-//document.write("<br> total sundays = ", no_of_sundays_in_year);
-//document.write("<br> total no of working days = ", total_days-no_of_sundays_in_year-no_of_holidays_in_year);
-//document.write("<br> percentage of academic year completed = ", percentage_of_year_completed, "%");
-//document.write("<br> percentage of academic year left = ", 100 - percentage_of_year_completed, "%");
-//document.write("<br> total holidays = ", no_of_sundays_in_year + no_of_holidays_in_year);
-//document.write("<br> total days over = ", find_days_inbetween(first_day, today));
-//document.write("<br> total sundays over = ", get_num_spec_days(first_day, today, 0));
-//document.write("<br> total holidays over = ", get_num_hols(first_day, today));
-//document.write("<br> total days left = ", find_days_inbetween(today, last_day));
-//document.write("<br> total sundays left = ", get_num_spec_days(today, last_day, 0));
-//document.write("<br> total holidays left = ", get_num_hols(today, last_day));
-
-//document.write("<br> no of working days left = ", no_of_working_days_left)
-//document.write("<br> no of working days over = ", no_of_working_days_over)
-//document.write("<br> total no of working days = ", total_no_of_working_days)
-//document.write("<br> percentage of year completed = ", percentage_of_year_completed, "%")
