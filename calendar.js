@@ -80,13 +80,13 @@ let no_of_hols_left = get_num_hols(today, last_day);
 let no_of_working_days_left = find_days_inbetween(today, last_day) - no_of_sundays_left - no_of_hols_left;
 
 let val1 = document.getElementById("no_wor_left").innerHTML;
-document.getElementById("no_wor_left").innerHTML = val1 + no_of_working_days_left;
+document.getElementById("no_wor_left").innerHTML = no_of_working_days_left + val1;
 
 let val2 = document.getElementById("no_wor_over").innerHTML;
-document.getElementById("no_wor_over").innerHTML = val2 + no_of_working_days_over;
+document.getElementById("no_wor_over").innerHTML = no_of_working_days_over + val2;
 
 let val3 = document.getElementById("percy").innerHTML;
-document.getElementById("percy").innerHTML = val3 + percentage_of_year_completed + "%";
+document.getElementById("percy").innerHTML = percentage_of_year_completed + "%" + val3;
 
 
 document.getElementById("percy_bar").value = percentage_of_year_completed;
