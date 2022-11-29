@@ -110,18 +110,42 @@ function find_if_hol(x_date) {
   }
 }
 
+function find_next_hols() {
+    let i = 0
+    let hols = 0
+    while (hols < 1||day == last_day) {
+      
+      let day = new Date(today.getTime()+ i);
+      
+      let is_hol = find_if_hol(day)
+      if ( is_hol == true) {
+          hols = hols + 1;
+          return day;
+      }
+      i = i + mil_sec_in_day
+    }
+    
+    
+  //let x = find_if_hol(new Date(today.getTime()+5*mil_sec_in_day))
+  //console.log("if hol test = " + x)
+}
 
 
-//function get_next_vac () [
-//        i = 0
-//        x = 5
-//        while (x<100) {
-//
-//
-//
-//        }
-//
-//]
+
+
+
+
+
+
+
+
+
+
+
+
+let test_123 = new Date("2022-09-30");
+console.log ("next_hol = " + find_next_hols())
+
 
 let test_tv = get_num_hols(today, last_day);
 console.log("total holidays are: ", test_tv);
