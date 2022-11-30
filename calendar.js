@@ -110,7 +110,7 @@ function find_if_hol(x_date) {
   }
 }
 
-function find_next_hols() {
+function find_next_hol() {
     let i = 0
     let hols = 0
     while (hols < 1||day == last_day) {
@@ -131,6 +131,24 @@ function find_next_hols() {
 }
 
 
+function find_vacation () {
+  let i = 0
+  let got_it = 0
+  let start_date = 0
+  let end_date = 0
+  while (got_it < 1||day == last_day) {
+    
+    let day = new Date(today.getTime()+ i);
+    
+    let is_hol = find_if_hol(day)
+    if ( is_hol == true) {
+      if (start_date)
+      start_date = day
+       
+    }
+    i = i + mil_sec_in_day
+  }
+
 
 
 
@@ -144,7 +162,7 @@ function find_next_hols() {
 
 
 let test_123 = new Date("2022-09-30");
-console.log ("next_hol = " + find_next_hols())
+console.log ("next_hol = " + find_next_hol())
 
 
 let test_tv = get_num_hols(today, last_day);
