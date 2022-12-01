@@ -117,7 +117,7 @@ function find_next_hol() {
       
       let day = new Date(today.getTime()+ i);
       
-      let is_hol = find_if_hol(day)
+      let is_hol = is_holiday(day)
       if ( is_hol == true) {
           hols = hols + 1;
           return day;
@@ -148,6 +148,7 @@ function find_vacation () {
     }
     i = i + mil_sec_in_day
   }
+}
 
 
 
@@ -199,3 +200,9 @@ document.getElementById("percy").innerHTML =
   percentage_of_year_completed + "%" + val3;
 
 document.getElementById("percy_bar").value = percentage_of_year_completed;
+
+let next_hol = find_next_hol()
+let next_hol_date = next_hol.getDate() + "-" + next_hol.getMonth() + "-" + next_hol.getFullYear()
+
+let val4 = document.getElementById("next_hol").innerHTML;
+document.getElementById("next_hol").innerHTML = val4 + next_hol_date;
