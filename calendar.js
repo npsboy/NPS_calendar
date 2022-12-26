@@ -199,7 +199,7 @@ let val3 = document.getElementById("percy").innerHTML;
 document.getElementById("percy").innerHTML =
   percentage_of_year_completed + "%" + val3;
 
-document.getElementById("percy_bar").value = percentage_of_year_completed;
+
 
 let next_hol = find_next_hol()
 let hol_month = next_hol.getMonth() + 1
@@ -207,3 +207,13 @@ let next_hol_date = next_hol.getDate() + "-" + hol_month + "-" + next_hol.getFul
 
 let val4 = document.getElementById("next_hol").innerHTML;
 document.getElementById("next_hol").innerHTML = val4 + next_hol_date;
+
+let val5 = "<div class=\"w3-grey w3-round-large\">\
+<div class=\"w3-containter w3-blue w3-round-large w3-center w3-padding w3-xlarge\" style=\"height:50px;width:"+ percentage_of_year_completed + "%" + "\">" + percentage_of_year_completed + "%" + "</div>\
+</div>"
+
+
+
+
+
+document.getElementById("pro_bar").innerHTML = val5
