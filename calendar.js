@@ -209,7 +209,7 @@ let val4 = document.getElementById("next_hol").innerHTML;
 document.getElementById("next_hol").innerHTML = val4 + next_hol_date;
 
 let val5 = "<div class=\"w3-grey w3-round-large\">\
-<div class=\"w3-containter w3-blue w3-round-large w3-center w3-padding w3-xlarge\" style=\"height:50px;width:"+ percentage_of_year_completed + "%" + "\">" + percentage_of_year_completed + "%" + "</div>\
+<div class=\"w3-containter w3-green w3-round-large w3-center w3-padding w3-xlarge\" style=\"height:50px;width:"+ percentage_of_year_completed + "%" + "\">" + percentage_of_year_completed + "%" + "</div>\
 </div>"
 
 
