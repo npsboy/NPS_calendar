@@ -201,7 +201,7 @@ document.getElementById("percy").innerHTML =
   percentage_of_year_completed + "%" + val3;
 
 
-
+//**************************************** */
 let next_hol = find_next_hol();
 
 if (next_hol != "no_more_hols") {
