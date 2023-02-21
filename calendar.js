@@ -31,11 +31,9 @@ const holidays = [
   "2022-12-30",
   "2022-12-31",
   "2023-01-26",
-  "2023-02-18",
+  "2023-02-18"
 ];
-//document.write("first day is ", first_day);
-//document.write("<br>")
-//document.write("last day is ", last_day);
+
 
 function find_days_inbetween(start, end) {
   let diff = end - start;
@@ -58,7 +56,7 @@ function get_num_spec_days(first_date, last_date, day) {
     if (x.getDay() == day) {
       specific_day = specific_day + 1;
     }
-    i = i + mil_sec_in_day; //<-- if increased by just one only one millisecond will change
+    i = i + mil_sec_in_day; //<-- if increased by just one, only one millisecond will change
   }
   return specific_day;
 }
@@ -111,23 +109,36 @@ function find_if_hol(x_date) {
 }
 
 function find_next_hol() {
-    let i = 0
-    let hols = 0
-    while (hols < 1||day == last_day) {
+
+    console.log ("inside find_next_hol()");
+    let i = 0;
+    let hols = 0;
+    
+    let day = new Date(today.getTime()+ i);
+    day.setHours(5, 30, 0, 0);
+
+
+    while (hols < 1 && day.valueOf() != last_day.valueOf()) {
       
-      let day = new Date(today.getTime()+ i);
       
+      day = new Date(today.getTime()+ i);
+      
+      console.log("inside while" +  day);
+
       let is_hol = is_holiday(day)
       if ( is_hol == true) {
+
           hols = hols + 1;
+          console.log ("returning")
           return day;
       }
       i = i + mil_sec_in_day
     }
     
+    console.log ("out of while, not found next holiday; returning last day");
+    return "no_more_hols";
     
-  //let x = find_if_hol(new Date(today.getTime()+5*mil_sec_in_day))
-  //console.log("if hol test = " + x)
+
 }
 
 
@@ -154,16 +165,6 @@ function find_vacation () {
 
 
 
-
-
-
-
-
-
-
-
-let test_123 = new Date("2022-09-30");
-console.log ("next_hol = " + find_next_hol())
 
 
 let test_tv = get_num_hols(today, last_day);
@@ -201,14 +202,19 @@ document.getElementById("percy").innerHTML =
 
 
 
-let next_hol = find_next_hol()
+let next_hol = find_next_hol();
+
+if (next_hol != "no_more_hols") {
 let hol_month = next_hol.getMonth() + 1
 let next_hol_date = next_hol.getDate() + "-" + hol_month + "-" + next_hol.getFullYear()
 
-let val4 = document.getElementById("next_hol").innerHTML;
-document.getElementById("next_hol").innerHTML = val4 + next_hol_date;
+document.getElementById("next_hol").innerHTML = "The next holiday is on " + next_hol_date;
+}
+else { 
+  document.getElementById("next_hol").innerHTML = "No more holidays. The summer vacation is comming up!"
+}
 
-let val5 = "<div class=\"w3-grey w3-round-large\">\
+let val4 = "<div class=\"w3-grey w3-round-large\">\
 <div class=\"w3-containter w3-green w3-round-large w3-center w3-padding w3-xlarge\" style=\"height:50px;width:"+ percentage_of_year_completed + "%" + "\">" + percentage_of_year_completed + "%" + "</div>\
 </div>"
 
@@ -216,4 +222,4 @@ let val5 = "<div class=\"w3-grey w3-round-large\">\
 
 
 
-document.getElementById("pro_bar").innerHTML = val5
+document.getElementById("pro_bar").innerHTML = val4
