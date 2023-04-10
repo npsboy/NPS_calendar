@@ -6,7 +6,7 @@ const mil_sec_in_day = 86400000;
 
 if (today>last_day) {
   console.log("today")
-  //document.getElementById("h1").innerHTML = "<br> <br> <h1 align= \"center\", style=\"color:#db35c0\"> <b> IT'S THE SUMMER VACATION! </b> </h1>"
+  document.getElementById("h1").innerHTML = "<br> <br> <h1 align= \"center\", style=\"color:#db35c0\"> <b> IT'S THE SUMMER VACATION! </b> </h1>"
   //document.getElementById("percy").innerHTML = " "
   //document.getElementById("pro_bar").innerHTML = " "
   //document.getElementById("no_wor_left").innerHTML = " "
@@ -15,7 +15,7 @@ if (today>last_day) {
   //document.getElementById("logo").innerHTML = "<center> <img  src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/640px-SNice.svg.png\" align =\"center\" alt=\"smily\" width=\"250\" height=\"250\"> </center>"
   //document.getElementById("background").innerHTML = "<style>  body {   background-image: url('https://static.vecteezy.com/system/resources/previews/003/176/873/original/beach-at-daytime-landscape-scene-with-mountain-background-free-vector.jpg'); background-repeat: no-repeat;  background-attachment: fixed; background-size: cover; } </style>"
 
-  document.getElementById("h1").innerHTML = "testing"
+
 }
 else {
 
