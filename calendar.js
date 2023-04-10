@@ -3,6 +3,23 @@ const last_day = new Date("2023-03-31");
 let today = new Date();
 today.setHours(5, 30, 0, 0);
 const mil_sec_in_day = 86400000;
+
+if (today>last_day) {
+  console.log("today")
+  document.getElementById("h1").innerHTML = "<br> <br> <h1 align= \"center\", style=\"color:#db35c0\"> <b> IT'S THE SUMMER VACATION! </b> </h1>"
+  document.getElementById("percy").innerHTML = " "
+  document.getElementById("pro_bar").innerHTML = " "
+  document.getElementById("no_wor_left").innerHTML = " "
+  document.getElementById("no_wor_over").innerHTML = " "
+  document.getElementById("next_hol").innerHTML = " "
+  document.getElementById("logo").innerHTML = "<center> <img  src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/640px-SNice.svg.png\" align =\"center\" alt=\"smily\" width=\"250\" height=\"250\"> </center>"
+  document.getElementById("background").innerHTML = "<style>  body {   background-image: url('https://static.vecteezy.com/system/resources/previews/003/176/873/original/beach-at-daytime-landscape-scene-with-mountain-background-free-vector.jpg'); background-repeat: no-repeat;  background-attachment: fixed; background-size: cover; } </style>"
+
+}
+else {
+
+
+
 const holidays = [
   "2022-08-15",
   "2022-08-31",
@@ -118,6 +135,7 @@ function find_next_hol() {
     day.setHours(5, 30, 0, 0);
 
 
+
     while (hols < 1 && day.valueOf() != last_day.valueOf()) {
       
       
@@ -137,10 +155,11 @@ function find_next_hol() {
     
     console.log ("out of while, not found next holiday; returning last day");
     return "no_more_hols";
-    
+ 
 
 }
 
+find_next_hol()
 
 function find_vacation () {
   let i = 0
@@ -211,15 +230,12 @@ let next_hol_date = next_hol.getDate() + "-" + hol_month + "-" + next_hol.getFul
 document.getElementById("next_hol").innerHTML = "The next holiday is on " + next_hol_date;
 }
 else { 
-  document.getElementById("next_hol").innerHTML = "No more holidays. The summer vacation is comming up!"
-}
+  document.getElementById("next_hol").innerHTML = "No more holidays. The summer vacation is comming up!"}
 
 let val4 = "<div class=\"w3-grey w3-round-large\">\
 <div class=\"w3-containter w3-green w3-round-large w3-center w3-padding w3-xlarge\" style=\"height:50px;width:"+ percentage_of_year_completed + "%" + "\">" + percentage_of_year_completed + "%" + "</div>\
 </div>"
 
-
-
-
-
 document.getElementById("pro_bar").innerHTML = val4
+
+}
