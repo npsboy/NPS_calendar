@@ -20,7 +20,6 @@ if (today>last_day) {
 else {
 
 
-
 const holidays = [
   "2022-08-15",
   "2022-08-31",
