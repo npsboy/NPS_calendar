@@ -1,5 +1,5 @@
-const first_day = new Date("2022-06-01");
-const last_day = new Date("2023-03-31");
+const first_day = new Date("2023-06-07");
+const last_day = new Date("2024-03-31");
 let today = new Date();
 today.setHours(5, 30, 0, 0);
 const mil_sec_in_day = 86400000;
@@ -14,41 +14,47 @@ if (today>last_day) {
   document.getElementById("next_hol").innerHTML = " "
   document.getElementById("logo").innerHTML = "<center> <img  src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/640px-SNice.svg.png\" align =\"center\" alt=\"smily\" width=\"250\" height=\"250\"> </center>"
   document.getElementById("background").innerHTML = "<style>  body {   background-image: url('https://static.vecteezy.com/system/resources/previews/003/176/873/original/beach-at-daytime-landscape-scene-with-mountain-background-free-vector.jpg'); background-repeat: no-repeat;  background-attachment: fixed; background-size: cover; } </style>"
-
+ 
 
 }
 else {
 
 
 const holidays = [
-  "2022-08-15",
-  "2022-08-31",
-  "2022-09-08",
-  "2022-09-24",
-  "2022-09-26",
-  "2022-09-27",
-  "2022-09-28",
-  "2022-09-29",
-  "2022-09-30",
-  "2022-10-01",
-  "2022-10-03",
-  "2022-10-04",
-  "2022-10-05",
-  "2022-10-22",
-  "2022-10-24",
-  "2022-10-25",
-  "2022-10-26",
-  "2022-11-01",
-  "2022-11-11",
-  "2022-12-24",
-  "2022-12-26",
-  "2022-12-27",
-  "2022-12-28",
-  "2022-12-29",
-  "2022-12-30",
-  "2022-12-31",
-  "2023-01-26",
-  "2023-02-18"
+  "2023-08-15",
+  "2023-08-25",
+  "2023-08-29",
+  "2023-09-19",
+  "2023-10-02",
+  "2023-10-14",
+  "2023-10-16",
+  "2023-10-17",
+  "2023-10-18",
+  "2023-10-19",
+  "2023-10-20",
+  "2023-10-21",
+  "2023-10-23",
+  "2023-10-24",
+  "2023-10-28",
+  "2023-11-01",
+  "2023-11-11",
+  "2023-11-13",
+  "2023-11-14",
+  "2023-11-30",
+  "2023-12-23",
+  "2023-12-25",
+  "2023-12-26",
+  "2023-12-27",
+  "2023-12-28",
+  "2023-12-29",
+  "2023-12-30",
+  "2024-01-01",
+  "2024-01-15",
+  "2024-01-26",
+  "2024-03-08",
+  "2024-03-09",
+  "2024-03-29",
+  "2024-03-30"
 ];
 
 
