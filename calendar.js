@@ -199,6 +199,11 @@ let no_of_holidays_over = get_num_hols(first_day, today);
 let no_of_sundays_left = get_num_spec_days(today, last_day, 0);
 let no_of_sundays_over = get_num_spec_days(first_day, today, 0);
 let no_of_sundays_in_year = get_num_spec_days(first_day, last_day, 0);
+/*--------------------*/
+let no_of_sat_left = get_num_spec_days(today, last_day, 6);
+let no_of_sat_over = get_num_spec_days(first_day, today, 6);
+let no_of_sat_in_year = get_num_spec_days(first_day, last_day, 6);
+/*--------------------*/
 let total_days = find_days_inbetween(first_day, last_day);
 let no_of_working_days_over =
   find_days_inbetween(first_day, today) -
@@ -206,42 +211,66 @@ let no_of_working_days_over =
   no_of_holidays_over;
 let total_no_of_working_days =
   total_days - no_of_sundays_in_year - no_of_holidays_in_year;
-let percentage_of_year_completed = Math.round(
-  (no_of_working_days_over / total_no_of_working_days) * 100
-);
+
 let no_of_hols_left = get_num_hols(today, last_day);
 let no_of_working_days_left =
   find_days_inbetween(today, last_day) - no_of_sundays_left - no_of_hols_left;
 
 let val1 = document.getElementById("no_wor_left").innerHTML;
-document.getElementById("no_wor_left").innerHTML =
-  no_of_working_days_left + val1;
+
 
 let val2 = document.getElementById("no_wor_over").innerHTML;
-document.getElementById("no_wor_over").innerHTML =
-  no_of_working_days_over + val2;
-
-let val3 = document.getElementById("percy").innerHTML;
-document.getElementById("percy").innerHTML =
-  percentage_of_year_completed + "%" + val3;
 
 
+
+
+
+  function makeSatHol() {
+   no_of_working_days_over= no_of_working_days_over - no_of_sat_over
+   total_no_of_working_days = total_no_of_working_days - no_of_sat_in_year
+   no_of_working_days_left = no_of_working_days_left - no_of_sat_left
+   main()
+  }
 //**************************************** */
 let next_hol = find_next_hol();
 
-if (next_hol != "no_more_hols") {
-let hol_month = next_hol.getMonth() + 1
-let next_hol_date = next_hol.getDate() + "-" + hol_month + "-" + next_hol.getFullYear()
+function main () {
+  
+  let hol_month = next_hol.getMonth() + 1
+  let next_hol_date = next_hol.getDate() + "-" + hol_month + "-" + next_hol.getFullYear()
+  if (next_hol != "no_more_hols") {
+    document.getElementById("next_hol").innerHTML = "The next holiday is on " + next_hol_date;
+  }
+  else { 
+    document.getElementById("next_hol").innerHTML = "No more holidays. The summer vacation is comming up!"
+  }
 
-document.getElementById("next_hol").innerHTML = "The next holiday is on " + next_hol_date;
-}
-else { 
-  document.getElementById("next_hol").innerHTML = "No more holidays. The summer vacation is comming up!"}
+  document.getElementById("no_wor_left").innerHTML =
+  no_of_working_days_left + val1;
 
-let val4 = "<div class=\"w3-grey w3-round-large\">\
+  document.getElementById("no_wor_over").innerHTML =
+  no_of_working_days_over + val2;
+
+  let percentage_of_year_completed = Math.round(
+    (no_of_working_days_over / total_no_of_working_days) * 100
+  );
+  let val3 = " percent of the year has been completed";
+  document.getElementById("percy").innerHTML =
+  percentage_of_year_completed + "%" + val3;
+
+  let val4 = "<div class=\"w3-grey w3-round-large\">\
 <div class=\"w3-containter w3-green w3-round-large w3-center w3-padding w3-xlarge\" style=\"height:50px;width:"+ percentage_of_year_completed + "%" + "\">" + percentage_of_year_completed + "%" + "</div>\
 </div>"
 
 document.getElementById("pro_bar").innerHTML = val4
+}
+
+main()
+
+function makeSatWorking(){
+  console.log("hjghjdjhfjhdkchhg")
+  location.reload()
+}
 
 }
+
