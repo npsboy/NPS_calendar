@@ -1,10 +1,10 @@
-const first_day = new Date("2023-06-05");
-const last_day = new Date("2024-03-31");
+const first_day = new Date("2024-06-05");
+const last_day = new Date("2025-03-31");
 let today = new Date();
 today.setHours(5, 30, 0, 0);
 const mil_sec_in_day = 86400000;
 
-if (today>last_day) {
+if (today>last_day || today<first_day) {
   console.log("today")
   document.getElementById("h1").innerHTML = "<br> <br> <h1 align= \"center\", style=\"color:#db35c0\"> <b> IT'S THE SUMMER VACATION! </b> </h1>"
   document.getElementById("percy").innerHTML = " "
