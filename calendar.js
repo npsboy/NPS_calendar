@@ -1,4 +1,4 @@
-const first_day = new Date("2023-06-07");
+const first_day = new Date("2023-06-05");
 const last_day = new Date("2024-03-31");
 let today = new Date();
 today.setHours(5, 30, 0, 0);
@@ -14,47 +14,46 @@ if (today>last_day) {
   document.getElementById("next_hol").innerHTML = " "
   document.getElementById("logo").innerHTML = "<center> <img  src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/640px-SNice.svg.png\" align =\"center\" alt=\"smily\" width=\"250\" height=\"250\"> </center>"
   document.getElementById("background").innerHTML = "<style>  body {   background-image: url('https://static.vecteezy.com/system/resources/previews/003/176/873/original/beach-at-daytime-landscape-scene-with-mountain-background-free-vector.jpg'); background-repeat: no-repeat;  background-attachment: fixed; background-size: cover; } </style>"
- 
+  document.getElementById("is_sat_hol?").innerHTML = ""
 
 }
 else {
 
 
 const holidays = [
-  "2023-08-15",
-  "2023-08-25",
-  "2023-08-29",
-  "2023-09-19",
-  "2023-10-02",
-  "2023-10-14",
-  "2023-10-16",
-  "2023-10-17",
-  "2023-10-18",
-  "2023-10-19",
-  "2023-10-20",
-  "2023-10-21",
-  "2023-10-23",
-  "2023-10-24",
-  "2023-10-28",
-  "2023-11-01",
-  "2023-11-11",
-  "2023-11-13",
-  "2023-11-14",
-  "2023-11-30",
-  "2023-12-23",
-  "2023-12-25",
-  "2023-12-26",
-  "2023-12-27",
-  "2023-12-28",
-  "2023-12-29",
-  "2023-12-30",
-  "2024-01-01",
-  "2024-01-15",
-  "2024-01-26",
-  "2024-03-08",
-  "2024-03-09",
-  "2024-03-29",
-  "2024-03-30"
+  "2024-08-15",
+  "2024-08-16",
+  "2024-09-07",
+  "2024-10-02",
+  "2024-10-09",
+  "2024-10-10",
+  "2024-10-11",
+  "2024-10-12",
+  "2024-10-14",
+  "2024-10-15",
+  "2024-10-16",
+  "2024-10-17",
+  "2024-10-18",
+  "2024-10-19",
+  "2024-10-31",
+  "2024-11-01",
+  "2024-11-02",
+  "2024-11-16",
+  "2024-11-18",
+  "2024-12-21",
+  "2024-12-23",
+  "2024-12-24",
+  "2024-12-25",
+  "2024-12-26",
+  "2024-12-27",
+  "2024-12-28",
+  "2024-12-30",
+  "2024-12-31",
+  "2025-01-01",
+  "2025-01-14",
+  "2025-01-26",
+  "2025-02-26",
+  "2025-03-30"
 ];
 
 
