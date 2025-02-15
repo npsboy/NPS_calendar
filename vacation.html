@@ -1,0 +1,64 @@
+
+<style>
+    body {
+        background-image: url('beach.png');
+        background-size: cover; /* Adjusts image size */
+        background-repeat: no-repeat; /* Prevents tiling */
+        background-position: center; /* Centers the image */
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+    .content-box {
+        width: 85vw; 
+        height: 95vh;
+        background-image: url('beach-bright.jpg');
+        background-size: cover; /* Adjusts image size */
+        background-repeat: no-repeat; /* Prevents tiling */
+        background-position: center; /* Centers the image */
+        border-radius: 20px;
+        box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2); /* Floating effect */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 24px;
+        font-family: helvetica, Arial;
+        color: #333333;
+    }
+    .umbrella {
+        position: fixed;
+        bottom: 30px;
+        right: 150px;
+        width: 50%;
+        max-width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+    .ball {
+        position: fixed;
+        bottom: 30px;
+        left: 300px;
+    }
+    h1 {
+        color: #155265;
+        font-size: 80px;
+        margin-bottom: 0;
+        margin-left: 50px;
+    }
+    h2 {
+        color: #333333;
+        font-size: 20px;
+        text-align: center;
+    }
+</style>
+    
+    <div  class="content-box">
+
+        <h1>It's Vacation Time!</h1>
+        <h2>We'll be back when school starts!</h2>
+        <img src="ball.png" class="ball" height="100px" width="145px">
+        <img src="umbrella.png" class="umbrella">
+
+    </div>
+
+

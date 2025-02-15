@@ -4,6 +4,7 @@ let today = new Date();
 today.setHours(5, 30, 0, 0);
 const mil_sec_in_day = 86400000;
 
+
 const holidays = [
     "2024-08-15",
     "2024-08-16",
@@ -262,5 +263,40 @@ function show_details() {
     setInterval(countdown, 1000);
 
 }
+async function page2() {
+  const response = await fetch("vacation.html");  // Wait for the fetch to complete
+  
+  // Step 2: Convert the response to text
+  const data = await response.text();  // Wait for the text conversion
+  
+  // Step 3: Inject the content into the page
+  document.getElementById('page').innerHTML = data;
 
+  setTimeout(() => {
+    console.log(document.documentElement.outerHTML);
+  }, 500);
+}
+async function page1() {
+  const response = await fetch("page1.html");  // Wait for the fetch to complete
+  
+  // Step 2: Convert the response to text
+  const data = await response.text();  // Wait for the text conversion
+  
+  // Step 3: Inject the content into the page
+  document.getElementById('page').innerHTML = data;
+
+
+}
+console.log("hello")
+
+if (today > last_day || today == last_day) {
+  page2() //summer vacation
+}
+else { 
+  //regular school
+  page1()
+  setTimeout(() => {
+    show_details();
+  }, 500);
+}
 show_details()
