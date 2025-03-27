@@ -1,9 +1,13 @@
 const first_day = new Date("2024-06-05");
-const last_day = new Date("2025-03-31");
+const last_day = new Date("2025-03-29");
+
+//last_day.setHours(14, 45, 0, 0); 
 let today = new Date();
 today.setHours(5, 30, 0, 0);
 const mil_sec_in_day = 86400000;
 
+console.log("today: " + today)
+console.log("last_day: " + last_day)
 
 const holidays = [
     "2024-08-15",
@@ -239,6 +243,7 @@ function show_details() {
 
         // Get today's date and time
         var now = new Date().getTime();
+
     
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
@@ -299,4 +304,3 @@ else {
     show_details();
   }, 500);
 }
-show_details()
