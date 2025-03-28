@@ -193,7 +193,7 @@ function show_details() {
         document.getElementById("next-hol").innerHTML = next_hol_date;
     }
     else { 
-        document.getElementById("next-hol").innerHTML = "No more holidays. The summer vacation is comming up!"
+        document.getElementById("next-hol").innerHTML = "Vacation Time!"
     }
 
 
@@ -239,6 +239,10 @@ function show_details() {
 
 
     var countDownDate = last_day.getTime();
+    countDownDate = new Date("2025-03-28");
+
+    countDownDate.setHours(14, 45, 0, 0);
+
     function countdown() {
 
         // Get today's date and time
@@ -247,6 +251,11 @@ function show_details() {
     
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
+
+        if (distance < 0) {
+            page2()
+            return;
+        }
     
         // Time calculations for days, hours, minutes and seconds
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
