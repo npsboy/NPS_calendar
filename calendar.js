@@ -147,8 +147,6 @@ function find_next_hol() {
 
 }
 
-find_next_hol()
-
 function find_vacation () {
   let i = 0
   let got_it = 0
