@@ -1,5 +1,5 @@
 const first_day = new Date("2025-05-26"); // First working day
-const last_day = new Date("2026-04-9"); // Last working day
+const last_day = new Date("2026-04-09"); // Last working day
 
 //last_day.setHours(14, 45, 0, 0); 
 let today = new Date();
@@ -302,7 +302,6 @@ async function page1() {
 console.log("hello")
 
 if (today > last_day || today == last_day) {
-  alert("hi")
   page2() //summer vacation
 }
 else { 
