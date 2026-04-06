@@ -122,13 +122,15 @@ function find_next_hol() {
 
     let i = 0;
     let hols = 0;
+  let end_day = new Date(last_day.getTime());
+  end_day.setHours(5, 30, 0, 0);
     
     let day = new Date(today.getTime()+ i);
     day.setHours(5, 30, 0, 0);
 
 
 
-    while (hols < 1 && day.valueOf() != last_day.valueOf()) {
+  while (hols < 1 && day.valueOf() <= end_day.valueOf()) {
       
       
       day = new Date(today.getTime()+ i);
@@ -231,14 +233,16 @@ function show_details() {
     if (is_sat_working == false) {
         total_no_of_working_days = total_no_of_working_days - no_of_sat_in_year;
     }
-    let percentage_of_year_completed = Math.round(
+    let percentage_of_year_completed = 0;
+    if (total_no_of_working_days > 0) {
+      percentage_of_year_completed = Math.round(
         (no_of_working_days_over / total_no_of_working_days) * 100
       );
+    }
     show_bar(percentage_of_year_completed);
 
 
-    var countDownDate = last_day.getTime();
-    countDownDate = last_day
+    var countDownDate = new Date(last_day.getTime());
     countDownDate.setHours(14, 45, 0, 0);
 
     function countdown() {
