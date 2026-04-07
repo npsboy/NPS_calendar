@@ -192,9 +192,10 @@ function show_details() {
     if (next_hol != "no_more_hols") {
         let next_hol_date = next_hol.getDate() + " " + next_hol.toLocaleString('default', { month: 'long' }) + " " + next_hol.getFullYear()
         document.getElementById("next-hol").innerHTML = next_hol_date;
+      document.getElementById("next-hol-section").style.display = "block";
     }
     else { 
-        document.getElementById("next-hol").innerHTML = "Vacation Time!"
+      document.getElementById("next-hol-section").style.display = "none";
     }
 
 
