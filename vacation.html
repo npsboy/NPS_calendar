@@ -1,5 +1,14 @@
 
 <style>
+    #confetti-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+    }
+
     body {
         background-image: url('beach.png');
         background-size: cover; /* Adjusts image size */
@@ -60,5 +69,7 @@
         <img src="umbrella.png" class="umbrella">
 
     </div>
+
+    <canvas id="confetti-canvas"></canvas>
 
 

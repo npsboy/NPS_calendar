@@ -176,6 +176,78 @@ function show_bar(percentage) {
     elem.innerHTML = width + "%"
 }
 
+function startVacationConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  if (!canvas) {
+    return;
+  }
+
+  var context = canvas.getContext('2d');
+  var particles = [];
+  var colors = ['#f94144', '#f3722c', '#f9c74f', '#90be6d', '#43aa8b', '#577590'];
+  var animationId;
+  var gravity = 0.12;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createBurst() {
+    for (var i = 0; i < 160; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * canvas.height * 0.3,
+        size: 6 + Math.random() * 7,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speedX: -3 + Math.random() * 6,
+        speedY: 1 + Math.random() * 3,
+        rotation: Math.random() * Math.PI,
+        rotationSpeed: -0.2 + Math.random() * 0.4,
+        opacity: 1
+      });
+    }
+  }
+
+  function drawParticle(particle) {
+    context.save();
+    context.translate(particle.x, particle.y);
+    context.rotate(particle.rotation);
+    context.globalAlpha = particle.opacity;
+    context.fillStyle = particle.color;
+    context.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size * 0.55);
+    context.restore();
+  }
+
+  function updateParticles() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles = particles.filter(function (particle) {
+      particle.speedY += gravity;
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+      particle.rotation += particle.rotationSpeed;
+      particle.opacity -= 0.004;
+
+      drawParticle(particle);
+
+      return particle.y < canvas.height + 30 && particle.opacity > 0;
+    });
+
+    if (particles.length > 0) {
+      animationId = requestAnimationFrame(updateParticles);
+    } else {
+      cancelAnimationFrame(animationId);
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  resizeCanvas();
+  createBurst();
+  updateParticles();
+  window.addEventListener('resize', resizeCanvas, { once: true });
+}
+
 
 
 function show_details() {
@@ -288,6 +360,7 @@ async function page2() {
   
   // Step 3: Inject the content into the page
   document.getElementById('page').innerHTML = data;
+  startVacationConfetti();
 
   setTimeout(() => {
     console.log(document.documentElement.outerHTML);
