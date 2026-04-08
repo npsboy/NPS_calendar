@@ -244,7 +244,7 @@ function show_details() {
 
 
     var countDownDate = new Date(last_day.getTime());
-    countDownDate.setHours(14, 45, 0, 0);
+    countDownDate.setHours(12, 20, 0, 0);
 
     function countdown() {
 
