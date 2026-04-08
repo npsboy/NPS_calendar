@@ -186,7 +186,7 @@ function startVacationConfetti() {
   var particles = [];
   var colors = ['#f94144', '#f3722c', '#f9c74f', '#90be6d', '#43aa8b', '#577590'];
   var animationId;
-  var gravity = 0.12;
+  var gravity = 0.02;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -194,7 +194,7 @@ function startVacationConfetti() {
   }
 
   function createBurst() {
-    for (var i = 0; i < 160; i++) {
+    for (var i = 0; i < 320; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: -20 - Math.random() * canvas.height * 0.3,
@@ -246,6 +246,184 @@ function startVacationConfetti() {
   createBurst();
   updateParticles();
   window.addEventListener('resize', resizeCanvas, { once: true });
+}
+
+var vacationAudio = null;
+var vacationAudioPendingPlay = false;
+var vacationAudioFallbackListenersBound = false;
+
+function getVacationAudio() {
+  if (!vacationAudio) {
+    vacationAudio = new Audio('Fireworks.mp3');
+    vacationAudio.preload = 'auto';
+  }
+
+  return vacationAudio;
+}
+
+function bindVacationAudioFallback() {
+  if (vacationAudioFallbackListenersBound) {
+    return;
+  }
+
+  vacationAudioFallbackListenersBound = true;
+
+  var resumeOnInteraction = function () {
+    if (!vacationAudioPendingPlay) {
+      return;
+    }
+
+    var audio = getVacationAudio();
+    audio.muted = false;
+    audio.currentTime = 0;
+
+    var retryPromise = audio.play();
+    if (retryPromise && typeof retryPromise.catch === 'function') {
+      retryPromise.catch(function () {
+        // Keep pending if playback is still blocked.
+      });
+    }
+  };
+
+  document.addEventListener('click', resumeOnInteraction);
+  document.addEventListener('keydown', resumeOnInteraction);
+  document.addEventListener('touchstart', resumeOnInteraction);
+}
+
+function playVacationAudio() {
+  var audio = getVacationAudio();
+  vacationAudioPendingPlay = true;
+
+  audio.pause();
+  audio.currentTime = 0;
+  audio.volume = 1;
+  audio.muted = true;
+
+  var playPromise = audio.play();
+
+  // Start muted (autoplay-friendly), then immediately unmute for audible playback.
+  if (playPromise && typeof playPromise.then === 'function') {
+    playPromise.then(function () {
+      setTimeout(function () {
+        audio.muted = false;
+      }, 60);
+      vacationAudioPendingPlay = false;
+    }).catch(function () {
+      audio.muted = false;
+      bindVacationAudioFallback();
+    });
+  } else {
+    audio.muted = false;
+    vacationAudioPendingPlay = false;
+  }
+
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(function () {
+      bindVacationAudioFallback();
+    });
+  }
+}
+
+function ensureVacationFlashStyles() {
+  if (document.getElementById('vacation-flash-style')) {
+    return;
+  }
+
+  var style = document.createElement('style');
+  style.id = 'vacation-flash-style';
+  style.textContent = `
+    #vacation-flash-overlay {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 10001;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    #vacation-flash-overlay .vacation-flare {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 18vmax;
+      height: 18vmax;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0.08);
+      background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.96) 45%, rgba(255, 255, 255, 0) 72%);
+      filter: blur(8px);
+      box-shadow: 0 0 80px 50px rgba(255, 255, 255, 0.95);
+      opacity: 0.96;
+    }
+
+    #vacation-flash-overlay.active .vacation-flare {
+      animation: vacationFlashExpand 760ms cubic-bezier(0.2, 0.65, 0.2, 1);
+    }
+
+    #vacation-flash-overlay.fade-out {
+      opacity: 0;
+      transition: opacity 900ms ease-out;
+    }
+
+    @keyframes vacationFlashExpand {
+      0% {
+        transform: translate(-50%, -50%) scale(0.08);
+        opacity: 0.95;
+      }
+
+      35% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(16);
+        opacity: 0;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+function runVacationFlash(onFinished) {
+  ensureVacationFlashStyles();
+
+  var page = document.getElementById('page');
+  if (page) {
+    page.style.visibility = 'hidden';
+  }
+
+  var existingOverlay = document.getElementById('vacation-flash-overlay');
+  if (existingOverlay) {
+    existingOverlay.remove();
+  }
+
+  var overlay = document.createElement('div');
+  overlay.id = 'vacation-flash-overlay';
+
+  var flare = document.createElement('div');
+  flare.className = 'vacation-flare';
+  overlay.appendChild(flare);
+
+  document.body.appendChild(overlay);
+
+  requestAnimationFrame(function () {
+    overlay.classList.add('active');
+  });
+
+  setTimeout(function () {
+    overlay.classList.add('fade-out');
+  }, 760);
+
+  setTimeout(function () {
+    overlay.remove();
+    if (page) {
+      page.style.visibility = 'visible';
+    }
+    if (typeof onFinished === 'function') {
+      onFinished();
+    }
+  }, 1660);
 }
 
 
@@ -360,7 +538,10 @@ async function page2() {
   
   // Step 3: Inject the content into the page
   document.getElementById('page').innerHTML = data;
-  startVacationConfetti();
+  runVacationFlash(function () {
+    startVacationConfetti();
+    playVacationAudio();
+  });
 
   setTimeout(() => {
     console.log(document.documentElement.outerHTML);
