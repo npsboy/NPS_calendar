@@ -236,9 +236,9 @@ function show_details() {
     }
     let percentage_of_year_completed = 0;
     if (total_no_of_working_days > 0) {
-      percentage_of_year_completed = Math.round(
-        (no_of_working_days_over / total_no_of_working_days) * 100
-      );
+      percentage_of_year_completed = Math.floor(
+        (no_of_working_days_over / total_no_of_working_days) * 10000
+      ) / 100;
     }
     show_bar(percentage_of_year_completed);
 
