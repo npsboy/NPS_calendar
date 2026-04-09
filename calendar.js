@@ -485,7 +485,7 @@ function show_details() {
         total_no_of_working_days = total_no_of_working_days - no_of_sat_in_year;
     }
     let percentage_of_year_completed = 0;
-    if (total_no_of_working_days > 0) {
+    if (total_no_of_working_days >= 0) {
       percentage_of_year_completed = Math.floor(
         (no_of_working_days_over / total_no_of_working_days) * 10000
       ) / 100;
