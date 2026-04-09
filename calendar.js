@@ -496,6 +496,8 @@ function show_details() {
     var countDownDate = new Date(last_day.getTime());
     countDownDate.setHours(12, 20, 0, 0);
 
+    var countdownIntervalId = null;
+
     function countdown() {
 
         // Get today's date and time
@@ -506,6 +508,9 @@ function show_details() {
         var distance = countDownDate - now;
 
         if (distance < 0) {
+            if (countdownIntervalId) {
+              clearInterval(countdownIntervalId);
+            }
             page2()
             return;
         }
@@ -527,10 +532,15 @@ function show_details() {
         seconds_display = seconds
     }
     // Update the count down every 1 second
-    setInterval(countdown, 1000);
+    countdownIntervalId = setInterval(countdown, 1000);
 
 }
 async function page2() {
+  if (window.__vacationPageLoaded) {
+    return;
+  }
+  window.__vacationPageLoaded = true;
+
   const response = await fetch("vacation.html");  // Wait for the fetch to complete
   
   // Step 2: Convert the response to text
