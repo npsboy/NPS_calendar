@@ -1,221 +1,269 @@
-<head>
-    <style>
-        body {
-            padding: 25px;
-            background-color: #EEB500;
-            display: flex;
-            justify-content: center;
-            align-items: center; 
-        }
-        .content-box {
-            
-            width: 80vw; 
-            height: 90vh;
-            background-color: #FFD54F;
-            border-radius: 20px;
-            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2); /* Floating effect */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 24px;
-            font-family: helvetica, Arial;
-            color: #333333;
-        }
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-        }
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            text-align: center;
-        }
-        .countdown-number {
-            font-size: 80px;
-            font-weight: bold;
-            color: #333333  ;
-            
-        }
-        #myProgress {
-          width: 80%;
-          background-color:  #333333;
-          border-radius: 10px;
-        }
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@500;700&display=swap');
 
-        #myBar {
-          width: 1%;
-          height: 30px;
-          background-color: rgb(4, 157, 4);
-          border-radius: 10px;
-          text-align: center;
-          color: #333333;
-        }
-        .circle-labels {
-            display: flex;
-            justify-content: center;
-            gap: 250px;
-            margin-top: 20px;
-        }
-        .circle-info {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-        .circle {
-            width: 25px;
-            height: 25px;   
-            border-radius: 50%;
-            
-        }
-        .next-hol {
-            font-size: 40px;
-            font-weight: bold;
-            color: #333333;
-        }   
+    :root {
+        --ink: #14213d;
+        --muted: #4a4636;
+        --bg: #ffc61a;
+        --coral: #ff4d3d;
+        --cream: #fff6dc;
+        --display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+    }
 
-        .switch {
-          position: relative;
-          display: inline-block;
-          width: 65px; /* Width of the toggle switch */
-          height: 30px; /* Height of the toggle switch */
-        }
+    body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--ink);
+    }
 
-        /* Hide the default checkbox appearance */
-        .switch input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-        }
+    .content-box {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 24px 56px;
+    }
 
-        /* Slider styling */
-        .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: #333333;
-          transition: 0.4s;
-          border-radius: 34px;
-        }
+    /* ---- headline ---- */
+    h1 {
+        margin: 0 0 32px;
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: clamp(2.4rem, 11vw, 4.25rem);
+        line-height: 1;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+    }
+    h1 span { display: block; }
+    .w2 { color: var(--coral); }
+    .w3 {
+        margin-top: 14px;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+    }
 
-        /* Create the circle inside the slider */
-        .slider:before {
-          position: absolute;
-          content: "";
-          height: 22px;
-          width: 22px;
-          border-radius: 50%;
-          left: 4px;
-          bottom: 4px;
-          background-color: white;
-          transition: 0.4s;
-        }
+    section { padding: 24px 0; }
+    section + section { border-top: 3px solid var(--ink); }
 
-        /* When the checkbox is checked, move the circle and change background */
-        input:checked + .slider {
-          background-color: #4CAF50; /* Green background when on */
-        }
+    .eyebrow {
+        margin: 0 0 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+    }
 
-        input:checked + .slider:before {
-          transform: translateX(35px); /* Move the circle when on */
-        }
-        
-        .label {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 14px;
-          color: white;
-          transition: opacity 0.3s ease;
-        }
+    /* ---- countdown tiles ---- */
+    .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+    .countdown-item {
+        padding: 14px 8px 10px;
+        border: 3px solid var(--ink);
+        background: var(--ink);
+        color: var(--bg);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .countdown-number {
+        font-family: var(--display);
+        font-size: clamp(1.9rem, 10vw, 3.6rem);
+        line-height: 1.05;
+        font-variant-numeric: tabular-nums;
+    }
+    .countdown-label {
+        margin-top: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
 
-        .yes {
-            left: 10px;
-            opacity: 0; /* Initially hidden */
-        }
+    /* ---- progress ---- */
+    .progress-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    #pct {
+        font-family: var(--display);
+        font-size: 2rem;
+        color: var(--coral);
+    }
+    #myProgress {
+        height: 22px;
+        background: var(--cream);
+        border: 3px solid var(--ink);
+    }
+    #myBar {
+        width: 1%;
+        height: 100%;
+        background: var(--coral);
+        transition: width 0.6s ease;
+    }
 
-        .no {
-          right: 10px;
-          opacity: 1; /* Initially visible */
-        }
+    .circle-labels { display: flex; gap: 12px; margin-top: 18px; }
+    .circle-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 12px 14px;
+        border: 3px solid var(--ink);
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    .circle-info:nth-child(1) { background: var(--cream); color: var(--ink); }
+    .circle-info:nth-child(2) { background: var(--cream); color: var(--ink); }
+    .circle-info .circle { display: none; }
+    .circle-info > div:nth-child(2) {
+        font-family: var(--display);
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
 
-        /* Hide the "Yes" label when toggle is off, and hide "No" when toggle is on */
-        input:checked ~ .no {
-          opacity: 0;
-        }
+    /* ---- next holiday ---- */
+    #next-hol-section {
+        background: var(--cream);
+        border: 3px solid var(--ink);
+        padding: 18px;
+        margin: 10px 0;
+    }
+    .next-hol {
+        font-family: var(--display);
+        font-size: clamp(1.4rem, 6vw, 2.2rem);
+        line-height: 1.1;
+        color: var(--ink);
+    }
 
-        input:checked ~ .yes {
-          opacity: 1;
-        }
-    </style>
-</head>
+    /* ---- toggle ---- */
+    .toggle-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 68px;
+        height: 34px;
+        flex: none;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; margin: 0; }
+    .slider {
+        position: absolute;
+        inset: 0;
+        cursor: pointer;
+        background-color: var(--ink);
+        transition: 0.3s;
+        border-radius: 34px;
+    }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        border-radius: 50%;
+        left: 4px;
+        bottom: 4px;
+        background-color: #fff;
+        transition: 0.3s;
+    }
+    input:checked + .slider { background-color: var(--coral); }
+    input:checked + .slider:before { transform: translateX(34px); }
+    input:focus-visible + .slider { outline: 3px solid var(--ink); outline-offset: 3px; }
+    .label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    .yes { left: 10px; opacity: 0; }
+    .no { right: 10px; opacity: 1; }
+    input:checked ~ .no { opacity: 0; }
+    input:checked ~ .yes { opacity: 1; }
 
-<body>
+    @media (max-width: 520px) {
+        .content-box { padding: 28px 16px 40px; }
+        .countdown { gap: 8px; }
+        .circle-labels { flex-direction: column; }
+    }
+</style>
 
+<div class="content-box">
 
-    <div class="content-box">
-        
-        <h1> Summer Vacation Countdown! </h1>
-        <br>
+    <h1>
+        <span class="w1">Countdown to</span>
+        <span class="w2">summer vacation</span>
+        <span class="w3">Academic year progress</span>
+    </h1>
 
+    <section>
         <div class="countdown">
             <div class="countdown-item">
-                <span class="countdown-number" id="days">230</span>
+                <span class="countdown-number" id="days">0</span>
                 <span class="countdown-label">Days</span>
             </div>
             <div class="countdown-item">
-                <span class="countdown-number" id="hrs">6</span>
+                <span class="countdown-number" id="hrs">0</span>
                 <span class="countdown-label">Hrs</span>
             </div>
             <div class="countdown-item">
-                <span class="countdown-number" id="mins">38</span>
+                <span class="countdown-number" id="mins">0</span>
                 <span class="countdown-label">Mins</span>
             </div>
             <div class="countdown-item">
-                <span class="countdown-number" id="secs">7</span>
+                <span class="countdown-number" id="secs">0</span>
                 <span class="countdown-label">Secs</span>
             </div>
         </div>
-        
-        <br>
-        <div id="myProgress">
-            <div id="myBar">10%</div>
+    </section>
+
+    <section>
+        <div class="progress-head">
+            <p class="eyebrow">Year completed</p>
+            <span id="pct">0%</span>
         </div>
-        
+        <div id="myProgress"><div id="myBar"></div></div>
+
         <div class="circle-labels">
-
             <div class="circle-info">
-                <div class="circle" style="background-color: rgb(4, 157, 4);"></div> <div id="days-over">184</div> Working days over
+                <div class="circle"></div>
+                <div id="days-over">0</div> Working days over
             </div>
-
             <div class="circle-info">
-                <div class="circle" style="background-color: #333333;"></div> <div id="days-left">39</div> Working days left
+                <div class="circle"></div>
+                <div id="days-left">0</div> Working days left
             </div>
-
         </div>
-        <br> <br>
-        <div id="next-hol-section">
-            <b>Next Public/School Holiday is on:</b>
-            <div id="next-hol" class="next-hol">21 Feb 2025 </div>
-        </div>
-        <br> <br>
+    </section>
 
-        <div>
-            Go to school on Saturdays?
-            <label class="switch">
-            
+    <section id="next-hol-section">
+        <p class="eyebrow">Next public/school holiday</p>
+        <div id="next-hol" class="next-hol"></div>
+    </section>
+
+    <section>
+        <label class="toggle-row">
+            Go to school on Saturdays
+            <span class="switch">
                 <input type="checkbox" id="toggleSwitch" onchange="show_details()" checked>
                 <span class="slider"></span>
                 <span class="label yes">Yes</span>
                 <span class="label no">No</span>
-            
-            </label>
-        </div>
+            </span>
+        </label>
+    </section>
 
-    </div>
-
-</body>
+</div>

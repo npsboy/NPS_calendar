@@ -171,7 +171,10 @@ function show_bar(percentage) {
     var elem = document.getElementById("myBar");
   var width = Math.round(percentage);
   elem.style.width = width + "%";
-  elem.innerHTML = width + "%";
+  var label = document.getElementById("pct");
+  if (label) {
+    label.innerHTML = width + "%";
+  }
 }
 
 function startVacationConfetti() {

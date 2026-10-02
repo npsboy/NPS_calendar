@@ -1,5 +1,14 @@
-
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+:root {
+        --ink: #fdf3df;
+        --muted: #b9d3d6;
+        --bg: #0f4c5c;
+        --accent: #ffb347;
+        --display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+    }
+
     #confetti-canvas {
         position: fixed;
         inset: 0;
@@ -10,66 +19,83 @@
     }
 
     body {
-        background-image: url('beach.png');
-        background-size: cover; /* Adjusts image size */
-        background-repeat: no-repeat; /* Prevents tiling */
-        background-position: center; /* Centers the image */
-        display: flex;
-        justify-content: center;
-        align-items: center; 
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--ink);
     }
+
     .content-box {
-        width: 85vw; 
-        height: 95vh;
-        background-image: url('beach-bright.jpg');
-        background-size: cover; /* Adjusts image size */
-        background-repeat: no-repeat; /* Prevents tiling */
-        background-position: center; /* Centers the image */
-        border-radius: 20px;
-        box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2); /* Floating effect */
-        display: flex;
-        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 32px;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
         align-items: center;
-        font-size: 24px;
-        font-family: helvetica, Arial;
-        color: #333333;
+        gap: 32px;
     }
-    .umbrella {
-        position: fixed;
-        bottom: 30px;
-        right: 150px;
-        width: 50%;
-        max-width: 100%;
-        max-width: 500px;
-        height: auto;
+
+    .eyebrow {
+        margin: 0 0 20px;
+        padding-top: 20px;
+        border-top: 2px solid var(--ink);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
     }
-    .ball {
-        position: fixed;
-        bottom: 30px;
-        left: 300px;
-    }
+
     h1 {
-        color: #155265;
-        font-size: 80px;
-        margin-bottom: 0;
-        margin-left: 50px;
+        margin: 0;
+        font-family: var(--display);
+        font-weight: 400;
+        font-size: clamp(3rem, 8vw, 6.5rem);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
     }
+    h1 em { font-style: normal; color: var(--accent); }
+
     h2 {
-        color: #333333;
-        font-size: 20px;
-        text-align: center;
+        margin: 24px 0 0;
+        max-width: 28ch;
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--muted);
+    }
+
+    .umbrella {
+        width: 100%;
+        max-width: 520px;
+        height: auto;
+        justify-self: center;
+    }
+
+    @media (max-width: 760px) {
+        .content-box {
+            grid-template-columns: 1fr;
+            align-content: start;
+            padding: 32px 20px 24px;
+            gap: 16px;
+        }
+        .umbrella { max-width: 480px; }
+        h1 { font-size: clamp(3rem, 14vw, 4.5rem); }
     }
 </style>
-    
-    <div  class="content-box">
 
-        <h1>It's Vacation Time!</h1>
-        <h2>We'll be back when school starts!</h2>
-        <img src="ball.png" class="ball" height="100px" width="145px">
-        <img src="umbrella.png" class="umbrella">
+<div class="content-box">
 
+    <div class="copy">
+        <p class="eyebrow">Academic year complete</p>
+        <h1>Enjoy the <em>summer</em></h1>
+        <h2>School resumes in the new academic year.</h2>
     </div>
 
-    <canvas id="confetti-canvas"></canvas>
+    <img src="umbrella.png" class="umbrella" alt="">
 
+</div>
 
+<canvas id="confetti-canvas"></canvas>
